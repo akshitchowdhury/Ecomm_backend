@@ -26,7 +26,7 @@ const handler = NextAuth({
           const userExists = await Ecomm.findOne({ email });
 
           if (!userExists) {
-            const res = await fetch(`prcoess.env.NEXTAUTH_URL${/api/user}`, {
+            const res = await fetch(`http://localhost:3000/api/user`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
