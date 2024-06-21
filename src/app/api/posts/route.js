@@ -1,48 +1,42 @@
 import Ecomm from "@/app/models/Ecomm";
 import connectMongoDB from "@/app/lib/mongodb";
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 export const POST = async (req) => {
   await connectMongoDB();
-  const { userId, text } = await req.json(); // Parse the request body
+  const { userId, title, description, category, price, brand, images } = await req.json(); // Parse the request body
 
-  if (!userId || !text) {
-    return NextResponse.json({ success: false, message: "Missing userId or text" }, { status: 400 });
+  if (!userId || !title || !description || !category || !price || !brand || !images || !images.length) {
+    return NextResponse.json({ success: false, message: "Missing required fields" }, { status: 400 });
   }
 
+  const image = images[0]; // Extract the first image
+
   try {
-    const user = await Ecomm.findById(userId);
+    const user = await Ecomm.findById(new mongoose.Types.ObjectId(userId)); // Use 'new' keyword correctly
     if (user) {
-      user.posts.push({ text });
+      const existingPost = user.posts.find(post => post.title === title);
+      if (existingPost) {
+        return NextResponse.json({ success: true, message: "Product already favorited" });
+      }
+
+      const newPost = {
+        title,
+        description,
+        category,
+        price,
+        brand,
+        image,
+      };
+      user.posts.push(newPost);
       await user.save();
-      return NextResponse.json({ success: true, message: "Post added successfully" });
+      return NextResponse.json({ success: true, message: "Product favorited successfully" });
     } else {
       return NextResponse.json({ success: false, message: "User not found" }, { status: 404 });
     }
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ success: false, message: "Server error" }, { status: 500 });
-  }
-};
-
-export const GET = async (req) => {
-  await connectMongoDB();
-  const { searchParams } = new URL(req.url);
-  const userId = searchParams.get("userId");
-
-  if (!userId) {
-    return NextResponse.json({ success: false, message: "Missing userId" }, { status: 400 });
-  }
-
-  try {
-    const user = await Ecomm.findById(userId);
-    if (user) {
-      return NextResponse.json({ success: true, posts: user.posts });
-    } else {
-      return NextResponse.json({ success: false, message: "User not found" }, { status: 404 });
-    }
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ success: false, message: "Server error" }, { status: 500 });
+    return NextResponse.json({ success: false, message: "Server error: " + error.message }, { status: 500 });
   }
 };

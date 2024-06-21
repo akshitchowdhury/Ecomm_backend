@@ -1,8 +1,32 @@
-import mongoose, { Schema, models } from "mongoose";
+import mongoose from "mongoose";
 
-const postSchema = new Schema(
+const postSchema = new mongoose.Schema(
   {
-    text: {
+    // productId: {
+    //   type: Number, // Assuming product ID from the dummy API is a number
+    //   required: true,
+    // },
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    brand: {
+      type: String,
+      required: true,
+    },
+    image: {
       type: String,
       required: true,
     },
@@ -11,10 +35,10 @@ const postSchema = new Schema(
       default: Date.now,
     },
   },
-  { _id: false } // We don't need separate _id for each post
+  { _id: true } // Use default _id field
 );
 
-const EcommSchema = new Schema(
+const EcommSchema = new mongoose.Schema(
   {
     email: {
       type: String,
@@ -25,10 +49,10 @@ const EcommSchema = new Schema(
       type: String,
       required: true,
     },
-    posts: [postSchema], // Add an array of posts
+    posts: [postSchema], // Array of posts
   },
   { timestamps: true }
 );
 
-const Ecomm = models.Ecomm || mongoose.model("Ecomm", EcommSchema);
+const Ecomm = mongoose.models.Ecomm || mongoose.model("Ecomm", EcommSchema);
 export default Ecomm;

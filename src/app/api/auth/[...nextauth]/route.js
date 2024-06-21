@@ -56,6 +56,7 @@ const handler = NextAuth({
 
       if (dbUser) {
         session.user.id = dbUser._id.toString(); // Add userId to session
+        console.log(session.user.id)
       }
 
       return session;
