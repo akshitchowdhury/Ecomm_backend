@@ -2,6 +2,7 @@
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import Products from "./component/Ecomm Layout/Products";
+import Dashboard from "./component/Pofile Dashboard/Dashboard";
 // import Posts from "./component/Posts";
 
 export default function Home() {
@@ -29,6 +30,9 @@ export default function Home() {
         </div>
         <div className="mt-8 w-full max-w-3xl">
         <Products userId={session.user.id}/>
+        <Dashboard userImg = {session.user.image}
+          userName = {session.user.name}
+        />
           {/* <Posts userId={session.user.id} /> */}
         </div>
       </div>

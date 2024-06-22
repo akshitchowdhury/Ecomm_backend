@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
 
+
 const Products = ({ userId }) => {
   const [products, setProducts] = useState([]);
   const [displayedProducts, setDisplayedProducts] = useState([]);
@@ -109,6 +110,8 @@ const Products = ({ userId }) => {
   };
 
   return (
+    <>
+    
     <div className="container mx-auto p-4">
       <div className="mb-4">
         <input
@@ -147,6 +150,7 @@ const Products = ({ userId }) => {
       {loading && <h1>Loading....</h1>}
       {!loading && hasMore && <div ref={ref}></div>}
     </div>
+    </>
   );
 };
 
