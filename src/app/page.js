@@ -9,6 +9,10 @@ export default function Home() {
   const { data: session } = useSession();
   console.log(session);
 
+  function singningOut(){
+    signOut()
+  }
+
   if (session) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
@@ -22,7 +26,7 @@ export default function Home() {
             />
           )}
           <button
-            onClick={() => signOut()}
+            onClick={singningOut}
             className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
           >
             Sign out
@@ -31,7 +35,7 @@ export default function Home() {
         <div className="mt-8 w-full max-w-3xl">
         <Products userId={session.user.id}/>
         <Dashboard userImg = {session.user.image}
-          userName = {session.user.name}
+          userName = {session.user.name} signOut= {singningOut}
         />
           {/* <Posts userId={session.user.id} /> */}
         </div>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {  signOut } from "next-auth/react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -105,7 +106,7 @@ function Dashboard({userImg, userName}) {
                 <Code style={{ color: "white" }} />
               </ListItemIcon>
               <ListItemText
-                primary={"Services"}
+                primary={"Fav Products"}
                 className="text-white hover:text-amber-300 transition ease-in-out duration-300 hover:scale-125"
               />
             </ListItem>
@@ -134,14 +135,15 @@ function Dashboard({userImg, userName}) {
         {[
           {
             contact: "Contact",
-            link: "/contact",
-            text: "Contact",
+            
+            text: "Sign Out",
             icon: <Contacts />,
           },
         ].map((item, index) => (
           <ListItem style={{ marginLeft: "9%" }} key={index} disablePadding>
             {/* <Link to={item.link}> */}
-              <ListItemButton
+            <div onClick={signOut}>
+              <ListItemButton 
               >
                 <ListItemIcon style={{ color: "white" }}>
                   {item.icon}
@@ -151,6 +153,7 @@ function Dashboard({userImg, userName}) {
                   primary={item.text}
                 />
               </ListItemButton>
+              </div>
             {/* </Link> */}
           </ListItem>
         ))}
