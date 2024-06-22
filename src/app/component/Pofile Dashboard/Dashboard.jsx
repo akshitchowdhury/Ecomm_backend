@@ -9,13 +9,9 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-// import InboxIcon from "@mui/icons-material/MoveToInbox";
-// import MailIcon from "@mui/icons-material/Mail";
+
 import HomeIcon from "@mui/icons-material/Home";
-// import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
-// import RememberMeIcon from "@mui/icons-material/RememberMe";
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-// import MenuOpenOutlinedIcon from '@mui/icons-material/MenuOpenOutlined';
 import {
   Code,
   Collections,
@@ -23,14 +19,19 @@ import {
   Person,
   AccountCircle,
 } from "@mui/icons-material";  
+import Link from "next/link";
 ;
-// import About from "../About/About";
-// import Home from "../Home/Home";
-// import pic from "../../assets/i1.jpg";
-// import "./Navbar.css";
 
-function Dashboard({userImg, userName}) {
+
+function Dashboard({userImg, userName, userId}) {
+
+
+
+
   const [open, setOpen] = useState(false);
+
+
+  
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -98,20 +99,18 @@ function Dashboard({userImg, userName}) {
           </ListItemButton>
         {/* </Link> */}
 
-        {/* <Link to="/services"> */}
-          <ListItemButton
-          >
-            <ListItem>
-              <ListItemIcon>
-                <Code style={{ color: "white" }} />
-              </ListItemIcon>
-              <ListItemText
-                primary={"Fav Products"}
-                className="text-white hover:text-amber-300 transition ease-in-out duration-300 hover:scale-125"
-              />
-            </ListItem>
-          </ListItemButton>
-        {/* </Link> */}
+        <ListItemButton component={Link} href={`/favorites/${userId}`} passHref>
+  <ListItem>
+    <ListItemIcon>
+      <Code style={{ color: "white" }} />
+    </ListItemIcon>
+    <ListItemText
+      primary={"Fav Products"}
+      className="text-white hover:text-amber-300 transition ease-in-out duration-300 hover:scale-125"
+    />
+  </ListItem>
+</ListItemButton>
+
         
 
         {/* <Link to="/products"> */}

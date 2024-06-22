@@ -3,11 +3,13 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import Products from "./component/Ecomm Layout/Products";
 import Dashboard from "./component/Pofile Dashboard/Dashboard";
+
 // import Posts from "./component/Posts";
 
 export default function Home() {
   const { data: session } = useSession();
   console.log(session);
+  
 
   function singningOut(){
     signOut()
@@ -36,7 +38,9 @@ export default function Home() {
         <Products userId={session.user.id}/>
         <Dashboard userImg = {session.user.image}
           userName = {session.user.name} signOut= {singningOut}
+          userId={session.user.id}
         />
+        
           {/* <Posts userId={session.user.id} /> */}
         </div>
       </div>
