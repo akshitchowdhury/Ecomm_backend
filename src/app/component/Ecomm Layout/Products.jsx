@@ -127,7 +127,7 @@ const Products = ({ userId }) => {
               <p className="text-black font-bold">{item.category}</p>
               <p className="text-black font-semibold">{item.description}</p>
               <p className="text-zinc-800 font-bold">{item.brand}</p>
-              <p className="text-black font-bold">{item.id}</p>
+              {/* <p className="text-black font-bold">{item.id}</p> */}
             </a>
             <button
               onClick={() => toggleFavorite(item)}
