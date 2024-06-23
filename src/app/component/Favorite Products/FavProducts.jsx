@@ -1,27 +1,29 @@
-
 import React from 'react';
+
 const FavProducts = ({ items }) => {
-  
   return (
-    <>
-    
-    <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {items.map(product => (
-        <div key={product._id} className="max-w-sm rounded overflow-hidden shadow-lg">
-          <img className="w-full" src={product.image} alt={product.title} />
-          <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">{product.title}</div>
-            <p className="text-gray-700 text-base">{product.description}</p>
+    <div className="container mx-auto p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {items.map(product => (
+          <div key={product._id} className="bg-white rounded-lg overflow-hidden shadow-lg">
+            <img className="w-full h-48 object-cover" src={product.image} alt={product.title} />
+            <div className="p-6">
+              <h2 className="font-bold text-xl mb-2">{product.title}</h2>
+              <p className="text-gray-700 text-base">{product.description}</p>
+            </div>
+            <div className="px-6 pb-4">
+              <div className="flex flex-wrap gap-2">
+                <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">{product.category}</span>
+                {product.brand && (
+                  <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">{product.brand}</span>
+                )}
+                <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">${product.price}</span>
+              </div>
+            </div>
           </div>
-          <div className="px-6 pt-4 pb-2">
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{product.category}</span>
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{product.brand}</span>
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">${product.price}</span>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-    </>
   );
 };
 

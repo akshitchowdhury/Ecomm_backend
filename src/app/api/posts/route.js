@@ -5,9 +5,9 @@ import mongoose from "mongoose";
 
 export const POST = async (req) => {
   await connectMongoDB();
-  const { userId, title, description, category, price, brand, images } = await req.json(); // Parse the request body
+  const { userId, title, description, category,productId, price,hasfavorited, brand, images } = await req.json(); // Parse the request body
 // !brand ||
-  if (!userId || !title || !description || !category || !price ||  !images || !images.length) {
+  if (!userId || !title ||!productId|| !description || !category || !hasfavorited|| !price ||  !images || !images.length) {
     return NextResponse.json({ success: false, message: "Missing required fields" }, { status: 400 });
   }
 
@@ -26,6 +26,8 @@ export const POST = async (req) => {
         description,
         category,
         price,
+        productId,
+        hasfavorited,
         brand,
         image,
       };
