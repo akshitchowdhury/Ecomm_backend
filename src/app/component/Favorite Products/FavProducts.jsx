@@ -1,7 +1,10 @@
-import React from 'react';
 
+import React from 'react';
 const FavProducts = ({ items }) => {
+  
   return (
+    <>
+    
     <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {items.map(product => (
         <div key={product._id} className="max-w-sm rounded overflow-hidden shadow-lg">
@@ -18,6 +21,7 @@ const FavProducts = ({ items }) => {
         </div>
       ))}
     </div>
+    </>
   );
 };
 

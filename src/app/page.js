@@ -36,13 +36,14 @@ export default function Home() {
         </div>
         <div className="mt-8 w-full max-w-3xl">
         <Products userId={session.user.id}/>
+
+        
+          {/* <Posts userId={session.user.id} /> */}
+        </div>
         <Dashboard userImg = {session.user.image}
           userName = {session.user.name} signOut= {singningOut}
           userId={session.user.id}
         />
-        
-          {/* <Posts userId={session.user.id} /> */}
-        </div>
       </div>
     );
   }

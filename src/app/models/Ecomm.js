@@ -24,7 +24,7 @@ const postSchema = new mongoose.Schema(
     },
     brand: {
       type: String,
-      required: true,
+      required: false,
     },
     image: {
       type: String,

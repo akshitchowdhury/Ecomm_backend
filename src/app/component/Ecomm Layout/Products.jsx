@@ -22,7 +22,8 @@ const Products = ({ userId }) => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`https://dummyjson.com/products?limit=8&skip=${(page - 1) * 8}`, { method: "GET" });
+      // https://dummyjson.com/products?limit=8&skip=${(page - 0) * 8}
+      const response = await fetch(`https://dummyjson.com/products`, { method: "GET" });
       const data = await response.json();
       setProducts(prevProducts => [...prevProducts, ...data.products]);
       setDisplayedProducts(prevDisplayed => [...prevDisplayed, ...data.products]);
@@ -77,7 +78,7 @@ const Products = ({ userId }) => {
         description: product.description,
         category: product.category,
         price: product.price,
-        brand: product.brand,
+        // brand: product.brand,
         images: product.images,
       });
       // Post favorite product details to the database
@@ -94,7 +95,7 @@ const Products = ({ userId }) => {
             description: product.description,
             category: product.category,
             price: product.price,
-            brand: product.brand,
+            // brand: product.brand,
             images: product.images,
           }),
         });
