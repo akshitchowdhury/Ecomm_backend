@@ -17,7 +17,13 @@ export default function Home() {
 
   if (session) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+      <>
+      <div className="bg-gray-100">
+      <Dashboard userImg = {session.user.image}
+          userName = {session.user.name} signOut= {singningOut}
+          userId={session.user.id}
+        />
+      <div className="min-h-screen flex flex-col items-center justify-center ">
         <div className="bg-white p-8 rounded-lg shadow-lg text-center max-w-md w-full">
           <p className="text-xl font-semibold mb-4">Signed in as {session.user.email}</p>
           {session.user.image && (
@@ -40,11 +46,10 @@ export default function Home() {
         
           {/* <Posts userId={session.user.id} /> */}
         </div>
-        <Dashboard userImg = {session.user.image}
-          userName = {session.user.name} signOut= {singningOut}
-          userId={session.user.id}
-        />
+        
       </div>
+      </div>
+        </>
     );
   }
 

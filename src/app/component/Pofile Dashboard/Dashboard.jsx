@@ -161,17 +161,15 @@ function Dashboard({userImg, userName, userId}) {
   );
 
   return (
-    <div className="absolute top-0 left-0 z-50 p-4">
+<div className="top-0 start-0 relative sticky p-4">
   <Button onClick={toggleDrawer(true)}>
-    <MenuOpenIcon className="text-white "
-    style={{
-      fontSize: '40px'
-    }} />
+    <MenuOpenIcon className="text-black" style={{ fontSize: '40px' }} />
   </Button>
   <Drawer open={open} onClose={toggleDrawer(false)}>
     {DrawerList}
   </Drawer>
 </div>
+
 
   );
 }
